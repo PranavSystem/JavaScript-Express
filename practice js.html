@@ -1,0 +1,88 @@
+<html>
+    <head>
+        <title>Javascript Validations</title>
+        <script>
+            var f=[];
+            function validations(){
+                var name=document.getElementById('name').value;
+                var email=document.getElementById("email").value;
+                var mob=parseInt(document.getElementById("no").value);
+                var dob=document.getElementById("dob").value;
+                var courses=document.getElementsByName("courses")
+                for(var j=0; j<courses.length; j++){
+                    if(food[j].checked){
+                        f.push(food[j].value)
+                    }
+                }
+
+                var flag1=validateName(name);
+                var flag2=validateEmail(email);
+                var flag3=validateNumber(mob);
+                var flag4=validateDob(dob);
+                var flag5=validateCourses(courses);
+            }
+
+            function validateName(name){
+                if(name ==="" || name.trim().length ===0 || !isNaN(name))
+                {
+                    document.getElementById("err1").innerHTML="name should not be blank !!"
+                    return false;
+                }
+                else{
+                    document.getElementById("err1").innerHTML="";
+                    return true;
+                }
+            }
+
+        </script>
+    </head>
+    <body>
+       <form action="">
+        <table>
+            <tr>
+                <td>Name</td>
+                <td><input type="text" id="name" name="name"></td>
+                <td><span id="err1"></span></td>
+            </tr>
+            <tr>
+                <td>Email</td>
+                <td><input type="text" id="email" name="email"></td>
+                <td><span>*</span></td>
+            </tr>
+            <tr>
+                <td>Mobile Number</td>
+                <td><input type="number" id="no" name="no"><span></span></td>
+                <td><span id=""></span></td>
+            </tr>
+            <tr>
+                <td>Birth Date</td>
+                <td><input type="date" id="dob" name="dob"><span></span></td>
+                <td><span></span></td>
+            </tr>
+            <tr>
+                <td>Gender</td>
+                <td><input type="radio" id="male" name="gender" value="Male" checked><label for="male">Male</label></td>
+                <td><input type="radio" id="female" name="gender" value="Female"><label for="female">Female</label></td>
+                <td><span id=""></span></td>
+            </tr>
+            <tr>
+                <td>Courses</td>
+                <td><input type="checkbox" id="DAC" name="courses" value="DAC"><label for="DAC">DAC</label>
+                <input type="checkbox" id="DBDA" name="courses" value="DBDA"><label for="DBDA">DBDA</label>
+                <input type="checkbox" id="DITISS" name="courses" value="DITISS"><label for="DITISS">DITISS</label>
+                </td>
+            </tr>
+            <tr>
+                <td>Location</td>
+                <td><select name="Location" id="loc">
+                        <option value="pune" selected>Pune</option>
+                        <option value="mumbai">Mumbai</option>
+                        <option value="banglore">Banglore</option>
+                </select></td>
+            </tr>
+        </table>
+       </form>
+       <button type="button" onclick="validations()">Submit</button>
+       <button type="reset">Reset</button>
+    </body>
+</html>
