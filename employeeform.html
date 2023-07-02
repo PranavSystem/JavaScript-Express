@@ -1,0 +1,306 @@
+<html>
+  <head>
+    <title>Employee</title>
+
+    <style>
+      span {
+        color: red;
+        text-decoration-color: red;
+      }
+      #d1 {
+        display: flex;
+        justify-content: center;
+      }
+
+      #div1 {
+        border: 2px solid black;
+      }
+    </style>
+
+    <script>
+      function validateId(id) {
+        var empid = parseInt(id);
+        if ((id = "" || isNaN(empid))) {
+          document.getElementById("err").innerHTML = "please enter valid id!!";
+          return false;
+        } else {
+          document.getElementById("err").innerHTML = "";
+          return true;
+        }
+      }
+
+      function validateName(name) {
+        if (name !== "" || isNaN(name)) {
+          document.getElementById("err1").innerHTML = "";
+          return true;
+        } else {
+          document.getElementById("err1").innerHTML = "Enter valid name!!!";
+          return false;
+        }
+      }
+
+      function validateSal(salary) {
+        var sal = parseFloat(salary);
+
+        if (salary !== "" && !isNaN(sal)) {
+          document.getElementById("err2").innerHTML = "";
+          return true;
+        } else {
+          document.getElementById("err2").innerHTML = "Enter valid salary!!";
+          return false;
+        }
+      }
+
+      var skill = "";
+      function validateSkill() {
+        var arr = document.getElementsByName("skill");
+        var str = "";
+        var count = 0;
+
+        for (var i = 0; i < arr.length; i++) {
+          if (arr[i].checked) {
+            skill += arr[i].value + ",";
+            count++;
+          }
+        }
+
+        if (count > 1) {
+          return true;
+        } else {
+          console.log("in else");
+          document.getElementById("err3").innerHTML =
+            "Please select at least 2 skill!!";
+          return false;
+        }
+      }
+
+      var gen = "";
+      function validateGender() {
+        var gender = document.getElementsByName("gender");
+
+        for (var i = 0; i < gender.length; i++) {
+          if (gender[i].checked) {
+            gen = gender[i].value;
+            document.getElementById("err4").innerHTML = "";
+            return true;
+          }
+        }
+        document.getElementById("err4").innerHTML = "  Please select gender";
+        return false;
+      }
+
+      function validateDept() {
+        department = document.getElementById("department").selectedIndex;
+        if (department === 0) {
+          document.getElementById("err5").innerHTML =
+            "  Please select department!!";
+          return false;
+        } else {
+          document.getElementById("err5").innerHTML = "";
+          return true;
+        }
+      }
+
+      function validateEmail() {
+        var email = document.getElementById("email").value;
+        var pattern = /^[A-Za-z0-9]+\@([A-Za-z]+\.[A-Za-z]{2,4})$/;
+
+        if (email != "" && pattern.test(email)) {
+          document.getElementById("err8").innerHTML = "";
+          return true;
+        } else {
+          document.getElementById("err8").innerHTML =
+            "Please Enter valid Email!!";
+          return false;
+        }
+      }
+
+      function validateUsername() {
+        var uname = document.getElementById("uname").value;
+        if (uname !== "" && isNaN(uname)) {
+          document.getElementById("err6").innerHTML = "";
+          return true;
+        } else {
+          document.getElementById("err6").innerHTML =
+            "Please Enter Valid Username!!!";
+          return false;
+        }
+      }
+
+      function validate() {
+        var a = parseInt(document.getElementById("empid").value);
+        var b = document.getElementById("ename").value;
+        var c = document.getElementById("sal").value;
+        var department = document.getElementById("department").value;
+        var email = document.getElementById("email").value;
+        var uname = document.getElementById("uname").value;
+
+        var flag1 = validateId(a);
+        var flag2 = validateName(b);
+        var flag3 = validateSal(c);
+        var flag4 = validateSkill();
+        var flag5 = validateGender();
+        var flag6 = validateDept();
+        var flag7 = validateEmail();
+        var flag8 = validateUsername();
+        if (
+          flag1 &&
+          flag2 &&
+          flag3 &&
+          flag4 &&
+          flag5 &&
+          flag6 &&
+          flag7 &&
+          flag8
+        ) {
+          document.getElementById("mydiv").innerHTML =
+            "Username : " +
+            uname +
+            " Email : " +
+            email +
+            " Empoyee Id : " +
+            a +
+            " Employee Name : " +
+            b +
+            " Employee Salary : " +
+            c +
+            " Skills : " +
+            skill +
+            " Gender : " +
+            gen +
+            " Department Name : " +
+            department;
+        }
+        clearform();
+      }
+      function clearform() {
+        document.getElementById("empid").value = "";
+        document.getElementById("ename").value = "";
+        document.getElementById("sal").value = "";
+      }
+    </script>
+  </head>
+  <body>
+    <div id="d1">
+      <div id="div1">
+        <table>
+          <tr>
+            <td><span>*</span>Enter Username :</td>
+            <td>
+              <input type="text" id="uname" name="uname" /><span
+                id="err6"
+              ></span>
+            </td>
+          </tr>
+          <tr>
+            <td><span>*</span>Enter Password :</td>
+            <td>
+              <input type="password" id="pass" name="pass" /><span
+                id="err7"
+              ></span>
+            </td>
+          </tr>
+          <tr>
+            <td><span>*</span>Enter Email :</td>
+            <td>
+              <input type="text" id="email" name="email" /><span
+                id="err8"
+              ></span>
+            </td>
+          </tr>
+          <tr>
+            <td><span>*</span>Enter Employee Id :</td>
+            <td>
+              <input type="text" id="empid" name="empid" /><span
+                id="err"
+              ></span>
+            </td>
+          </tr>
+          <tr>
+            <td><span>*</span>Enter Emplyee Name :</td>
+            <td>
+              <input type="text" id="ename" name="ename" /><span
+                id="err1"
+              ></span>
+            </td>
+          </tr>
+          <tr>
+            <td><span>*</span> Enter Salary :</td>
+            <td>
+              <input type="text" name="sal" id="sal" /><span id="err2"></span>
+            </td>
+          </tr>
+          <tr>
+            <td><span>*</span>Date Of Bitrh :</td>
+            <td><input type="date" name="dob" id="dob" value="dob" /></td>
+          </tr>
+          <tr>
+            <td><span>*</span>Gender :</td>
+            <td>
+              <input type="radio" name="gender" id="male" value="male" /><label
+                for="male"
+                >Male</label
+              >
+              <input
+                type="radio"
+                name="gender"
+                id="female"
+                value="female"
+              /><label for="female">Female</label><span id="err4"></span>
+            </td>
+          </tr>
+
+          <tr>
+            <td><span>*</span> Choose Skills :</td>
+            <td>
+              <input
+                type="checkbox"
+                name="skill"
+                id="java"
+                value="java"
+              /><label for="java">Java</label>
+              <input type="checkbox" name="skill" id="c++" value="c++" /><label
+                for="c++"
+                >C++</label
+              >
+              <input
+                type="checkbox"
+                name="skill"
+                id="dbda"
+                value="dbda"
+              /><label for="dbda">DBDA</label><span id="err3"></span>
+            </td>
+          </tr>
+
+          <tr>
+            <td><span>*</span> Choose Department :</td>
+            <td>
+              <select name="department" id="department">
+                <option value="test">-----select-----</option>
+                <option value="hr">HR</option>
+                <option value="sales">SALES</option>
+                <option value="rnd">RnD</option>
+                <option value="quality">QUALITY</option></select
+              ><span id="err5"></span>
+            </td>
+          </tr>
+
+          <tr>
+            <td>
+              <button
+                type="submit"
+                id="btn"
+                name="btn"
+                value="btn"
+                onclick="validate()"
+              >
+                Submit
+              </button>
+            </td>
+          </tr>
+        </table>
+        <div id="mydiv"></div>
+      </div>
+    </div>
+  </body>
+</html>
